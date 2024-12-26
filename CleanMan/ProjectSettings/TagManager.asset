@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Towel
+  - Plier
+  - Broom
+  - PlierPoint
+  - Hand
+  - Garbage
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - GoodsCancatch
+  - Player
+  - 
+  - GoodsTowel
+  - GoodsBroom
+  - GoodsPlier
+  - GoodsNotcatch
+  - Towel
+  - Tools
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
