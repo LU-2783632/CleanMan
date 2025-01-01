@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0df0fa91d21ec6dacd8cdc7f377ae52703dbb757ac598a17b9cc7a1b94cc7435
-size 537
+fileFormatVersion: 2
+guid: 2a888a2c58c8eac449a6b3ca882a19e0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - leafParticleSystem: {fileID: 1999085145875706548, guid: c552a0c2602b678449378417c10003ec, type: 3}
+  - leafPrefab: {fileID: 5285286432830581243, guid: 41d96ba65b0b9eb4ba613212aa91ae96, type: 3}
+  - leafParent: {fileID: 4761092806326268737, guid: 41d96ba65b0b9eb4ba613212aa91ae96, type: 3}
+  executionOrder: -1300
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

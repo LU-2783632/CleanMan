@@ -12,26 +12,19 @@ public class HandTool : MonoBehaviour
     public Camera camera;
     public GameObject CameraPoint;
     private GameObject Player;
-    public float Speed;
     public LayerMask Goodscancatch;
     public GameObject hitobjctHand;
     private bool Ifhandmove = false;
     public bool Ifhit;
-    public GameObject hand;
-    Animator animatorhand;
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
         transform.parent = camera.transform;
-        animatorhand = hand.GetComponent<Animator>();
-        animatorhand.Play("Idle");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Speed = Player.GetComponent<Breath>().Cleanspeed;
-        animatorhand.speed = Speed;
         Hand();
     }
 
@@ -67,19 +60,16 @@ public class HandTool : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 hitobjctHand.GetComponent<GoodsCancatch>().Ifmove = true;
-                animatorhand.SetBool("IfHand", true);
             }
             else if (Input.GetMouseButtonUp(0))
             {
                 hitobjctHand.GetComponent<GoodsCancatch>().Ifmove = false;
-                animatorhand.SetBool("IfHand", false);
             }
         }
         if (hitobjctHand != null && hitobjctHand.GetComponent<GoodsCancatch>().Hasmoved)
         {
             Ifhandmove = false;
             hitobjctHand = null;
-            animatorhand.SetBool("IfHand", false);
         }
     }
 

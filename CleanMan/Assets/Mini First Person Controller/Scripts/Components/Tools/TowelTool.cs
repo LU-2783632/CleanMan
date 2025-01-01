@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 using static UnityEngine.GraphicsBuffer;
 
 public class TowelTool : MonoBehaviour
 {
     public Camera camera;
-    public Transform Palm;
     public GameObject CameraPoint;
-    public GameObject hand;
-    Animator animatorhand;
+    public Animator animator;
     public float Speed;
     public GameObject Player;
     public bool Ifclean = false;
@@ -21,16 +18,14 @@ public class TowelTool : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
-        transform.parent = Palm.transform;
-        animatorhand = hand.GetComponent<Animator>();
-        animatorhand.Play("Idle");
+        transform.parent = camera.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
         Speed = Player.GetComponent<Breath>().Cleanspeed;
-        animatorhand.speed = Speed;
+        animator.speed = Speed;
         Move();
         Check();
     }
@@ -45,16 +40,11 @@ public class TowelTool : MonoBehaviour
         }
         if (Ifclean)
         {
-            animatorhand.SetBool("IfTowel", true);
+            animator.enabled = true;
         }
         else
         {
-            animatorhand.SetBool("IfTowel", false);
-        }
-        //
-        if (!hand.GetComponent<Animationstop>().Ifclean)
-        {
-            Ifclean = false;
+            animator.enabled = false;
         }
     }
     public void Check()
@@ -87,6 +77,10 @@ public class TowelTool : MonoBehaviour
                 hitobjctTowel = null;
             }
         }
+    }
+    public void OnAnimationEvent()
+    {
+        Ifclean = false;
     }
 
 }

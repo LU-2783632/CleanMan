@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4c5076457a6690d2f3b195e6de14e5bf45a89d0528d7a8e7b49229a165e4b594
-size 434
+fileFormatVersion: 2
+guid: 58ca0678a5f12484ea97b3ef938e0f70
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rainPrefab: {fileID: 2423328475947483762, guid: f14ef009b6f2d224e8067961c4501436, type: 3}
+  - rainParent: {fileID: 2770137744445751915, guid: f14ef009b6f2d224e8067961c4501436, type: 3}
+  executionOrder: -1200
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

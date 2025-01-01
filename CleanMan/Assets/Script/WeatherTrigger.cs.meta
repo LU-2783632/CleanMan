@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8f743bd5318ad78e90fc09278106e7812785c318458615787f94bb1fe2db913a
-size 535
+fileFormatVersion: 2
+guid: 75e9ff2992a20884f856675d39b855a4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - weatherManager: {instanceID: 0}
+  - sunnyWeather: {fileID: 11400000, guid: f737edbf5bf01df4b80540c4262a772a, type: 2}
+  - cloudyWeather: {fileID: 11400000, guid: 6718fbd821771c543b19fd62b0bc8c58, type: 2}
+  - rainyWeather: {fileID: 11400000, guid: 87e54ef8daa04c24c9fa1e875bc28dd9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

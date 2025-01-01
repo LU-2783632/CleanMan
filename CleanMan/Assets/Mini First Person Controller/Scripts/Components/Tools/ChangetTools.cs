@@ -12,11 +12,9 @@ public class ChangetTools : MonoBehaviour
     public GameObject Plier;
     public GameObject Towel;
     public bool IfChange = false;
-    private int i;
     // Start is called before the first frame update
     void Start()
     {
-        i = 0;
         tools.SetActive(false);
         Handtool();
         Cursor.lockState = CursorLockMode.Locked;
@@ -29,7 +27,7 @@ public class ChangetTools : MonoBehaviour
     }
     private void ChangeTools()
     {
-        if (Input.GetMouseButtonUp(1) && i == 0)
+        if (Input.GetMouseButton(1))
         {
             IfChange = true;
             tools.SetActive(true);
@@ -41,26 +39,6 @@ public class ChangetTools : MonoBehaviour
         {
             Invoke("Changed", 0.2f);
             Invoke("Renew", 0.2f);
-        }
-        if(IfChange)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
-                i = 1;
-            }
-            if (i == 1)
-            {
-                if (Input.GetMouseButtonUp(1))
-                {
-                    IfChange = false;
-                    tools.SetActive(false);
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    i = 0;
-                }
-            }
-
-            
         }
     }
     private void Changed()
