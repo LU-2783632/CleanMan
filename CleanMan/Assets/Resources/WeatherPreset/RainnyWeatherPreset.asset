@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef69966846e057440862436cb9db10e9, type: 3}
+  m_Name: RainnyWeatherPreset
+  m_EditorClassIdentifier: 
+  skybox: {fileID: 2100000, guid: c56733e0f3a6cf84e98cb82df9b9d874, type: 2}
+  lightColor: {r: 0.39215687, g: 0.39215687, b: 0.47058824, a: 1}
+  lightIntensity: 0.5
+  ambientColor: {r: 0.2735849, g: 0.2720363, b: 0.2720363, a: 1}
+  ambientIntensity: 0.5
+  enableFog: 1
+  fogColor: {r: 0.47058824, g: 0.50980395, b: 0.5882353, a: 1}
+  fogDensity: 0.01
+  windStrength: 1
+  windRandomRange: 360
+  minWindInterval: 5
+  maxWindInterval: 10
+  windDuration: 7
+  weatherSound: {fileID: 8300000, guid: ff60daf5385de934887491c627249836, type: 3}
+  enableRain: 1
+  rainParticlePrefab: {fileID: 2423328475947483762, guid: f14ef009b6f2d224e8067961c4501436, type: 3}
+  enableLeaves: 1
+  leafDuration: 8
+  minLeafInterval: 20
+  maxLeafInterval: 20
+  leafParticleCount: 15

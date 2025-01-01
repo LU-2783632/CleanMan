@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef69966846e057440862436cb9db10e9, type: 3}
+  m_Name: CloudyWeatherPreset
+  m_EditorClassIdentifier: 
+  skybox: {fileID: 2100000, guid: 5c85577d37238394db2f7b46273377f2, type: 2}
+  lightColor: {r: 0.7058824, g: 0.7058824, b: 0.78431374, a: 1}
+  lightIntensity: 0.8
+  ambientColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  ambientIntensity: 0.7
+  enableFog: 1
+  fogColor: {r: 0.78431374, g: 0.78431374, b: 0.8235294, a: 1}
+  fogDensity: 0.001
+  windStrength: 0.5
+  windRandomRange: 120
+  minWindInterval: 10
+  maxWindInterval: 15
+  windDuration: 5
+  weatherSound: {fileID: 8300000, guid: 4e3eb29cb049a854c87f9ed459007e8a, type: 3}
+  enableRain: 0
+  rainParticlePrefab: {fileID: 0}
+  enableLeaves: 1
+  leafDuration: 5
+  minLeafInterval: 30
+  maxLeafInterval: 30
+  leafParticleCount: 10

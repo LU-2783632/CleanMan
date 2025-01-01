@@ -13,10 +13,35 @@ public class GoodswithBroom : MonoBehaviour
     private Color originalColor;
     private float alpha = 1f;
     private GameObject Garbage;
+
+    private BroomTool broomTool; // 声明 broomTool 变量
     void Start()
     {
+        Initialize();
+
         Player = GameObject.FindWithTag("Player");
         Garbage = GameObject.FindWithTag("Garbage");
+
+        if (Player == null)
+        {
+            Debug.LogWarning("Player not found.");
+        }
+        if (Garbage == null)
+        {
+            Debug.LogWarning("Garbage not found.");
+        }
+        if (Broom == null)
+        {
+            Debug.LogWarning("Broom not found.");
+        }
+        else
+        {
+            broomTool = Broom.GetComponent<BroomTool>();
+            if (broomTool == null)
+            {
+                Debug.LogWarning("Broom does not have a BroomTool component.");
+            }
+        }
         Renderer renderer = GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -29,42 +54,140 @@ public class GoodswithBroom : MonoBehaviour
         }
     }
 
+    public void Initialize()
+    {
+        // 初始化引用
+        Player = GameObject.FindWithTag("Player");
+        Garbage = GameObject.FindWithTag("Garbage");
+        Broom = GameObject.FindWithTag("Broom");
+
+        if (Player == null)
+        {
+            Debug.LogWarning("Player not found. Make sure there is a GameObject with the 'Player' tag.");
+        }
+        if (Garbage == null)
+        {
+            Debug.LogWarning("Garbage not found. Make sure there is a GameObject with the 'Garbage' tag.");
+        }
+        if (Broom == null)
+        {
+            Debug.LogWarning("Broom not found. Make sure there is a GameObject with the 'Broom' tag.");
+        }
+
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            material = renderer.material;
+            if (material.HasProperty("_Color"))
+            {
+                originalColor = material.color;
+            }
+            else
+            {
+                Debug.LogWarning("Material does not have a _Color property.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Renderer not found on this object.");
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        Broom = GameObject.FindWithTag("Broom");
-        Clean();
+        if (Broom == null)
+        {
+            Broom = GameObject.FindWithTag("Broom");
+            if (Broom == null)
+            {
+                Debug.LogWarning("Broom is still not found.");
+                return; // 等待下一帧再尝试
+            }
+            else
+            {
+                broomTool = Broom.GetComponent<BroomTool>();
+                if (broomTool == null)
+                {
+                    Debug.LogWarning("Broom does not have a BroomTool component.");
+                }
+            }
+        }
+
+        if (Player == null || Garbage == null || material == null)
+        {
+            if (Player == null) Debug.LogWarning("Player is not initialized.");
+            if (Garbage == null) Debug.LogWarning("Garbage is not initialized.");
+            if (material == null) Debug.LogWarning("Material is not initialized.");
+            return; // 等待下一帧再尝试
+        }
+
+        Clean(); ;
     }
     private void Clean()
     {
-        if (Broom !=null && Broom.GetComponent<BroomTool>().Ifhit)
+        if (broomTool == null)
         {
-            if (this.gameObject == Broom.GetComponent<BroomTool>().hitobjctBroom)
+            Debug.LogWarning("BroomTool is null in Clean.");
+            return;
+        }
+
+        if (broomTool.Ifhit && broomTool.hitobjctBroom != null)
+        {
+            if (this.gameObject == broomTool.hitobjctBroom)
             {
-                Ifclean = Broom.GetComponent<BroomTool>().IfcleanBroom;
+                Ifclean = broomTool.IfcleanBroom;
             }
         }
+
+        if (Player == null)
+        {
+            Debug.LogWarning("Player is null in Clean.");
+            return;
+        }
+
         speed = Player.GetComponent<Breath>().Cleanspeed * broomSpeed;
 
         if (Ifclean)
         {
+            Debug.Log($"Cleaning started for {gameObject.name}");
+
             alpha = Mathf.MoveTowards(alpha, 0.0f, speed * Time.deltaTime);
             material.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
-        }
-        if (alpha <= 0.2f)
-        {
-            Garbage.GetComponent<Garbage>().Ifclean = true;
-            gameObject.SetActive(false);
-        }
-        //outline
-        if (Broom != null && Broom.GetComponent<BroomTool>().hitobjctCamerahit != null 
-            && this.gameObject == Broom.GetComponent<BroomTool>().hitobjctCamerahit)
-        {
-            gameObject.GetComponent<Outline>().enabled = true;
+
+            if (alpha <= 0.2f)
+            {
+                Debug.Log($"Leaf {gameObject.name} is fully cleaned.");
+                gameObject.SetActive(false);
+            }
         }
         else
         {
-            gameObject.GetComponent<Outline>().enabled = false;
+            Debug.Log($"Leaf {gameObject.name} is not being cleaned.");
+        }
+
+        // 检查 Outline
+        if (broomTool.hitobjctCamerahit != null && this.gameObject == broomTool.hitobjctCamerahit)
+        {
+            Outline outline = GetComponent<Outline>();
+            if (outline != null)
+            {
+                outline.enabled = (broomTool.hitobjctCamerahit == this.gameObject);
+                Debug.Log($"Outline for {gameObject.name} is now: {outline.enabled}");
+            }
+            else
+            {
+                Debug.LogWarning($"Outline component is missing on {gameObject.name}");
+            }
+        }
+        else
+        {
+            Outline outline = GetComponent<Outline>();
+            if (outline != null)
+            {
+                outline.enabled = false;
+            }
         }
     }
 

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef69966846e057440862436cb9db10e9, type: 3}
+  m_Name: SunnyDayWeatherPreset
+  m_EditorClassIdentifier: 
+  skybox: {fileID: 2100000, guid: 195547e2645596b4faa7232d5273d0e1, type: 2}
+  lightColor: {r: 1, g: 0.8784314, b: 0.5411765, a: 1}
+  lightIntensity: 1.2
+  ambientColor: {r: 0.9411765, g: 0.9411765, b: 0.9411765, a: 1}
+  ambientIntensity: 1
+  enableFog: 0
+  fogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  fogDensity: 0.01
+  windStrength: 0
+  windRandomRange: 10
+  minWindInterval: 15
+  maxWindInterval: 20
+  windDuration: 2
+  weatherSound: {fileID: 8300000, guid: 816707f7c7d4da7468ca8939937f6f0d, type: 3}
+  enableRain: 0
+  rainParticlePrefab: {fileID: 0}
+  minLeafInterval: 20
+  maxLeafInterval: 25
+  leafDuration: 5
+  minLeafCount: 3
+  maxLeafCount: 5
+  leafParticleCount: 4
