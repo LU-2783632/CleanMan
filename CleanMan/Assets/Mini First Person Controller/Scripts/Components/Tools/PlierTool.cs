@@ -5,28 +5,31 @@ using UnityEngine;
 public class PlierTool : MonoBehaviour
 {
     public Camera camera;
+    public Transform Palm;
     public GameObject CameraPoint;
     public float Speed;
-    public Animator animator;
-    public Animation animation;
     public GameObject Player;
     public bool Ifclean = false;
     public bool IfcleanPlier = false;
     public LayerMask GoodsPlier;
     public GameObject hitobjctPlier;
     public bool Ifhit = false;
+    public GameObject hand;
+    Animator animatorhand;
     // Update is called once per frame
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
-        transform.parent = camera.transform;
+        transform.parent = Palm.transform;
+        animatorhand = hand.GetComponent<Animator>();
+        animatorhand.Play("Idle");
     }
 
     // Update is called once per frame
     void Update()
     {
         Speed = Player.GetComponent<Breath>().Cleanspeed;
-        animator.speed = Speed;
+        animatorhand.speed = Speed;
         Move();
         Check();
     }
@@ -41,11 +44,16 @@ public class PlierTool : MonoBehaviour
         }
         if (Ifclean)
         {
-            animator.enabled = true;
+            animatorhand.SetBool("IfTowel", true);
         }
         else
         {
-            animator.enabled = false;   
+            animatorhand.SetBool("IfTowel", false);
+        }
+        //
+        if (!hand.GetComponent<Animationstop>().Ifclean)
+        {
+            Ifclean = false;
         }
     }
     
@@ -76,9 +84,5 @@ public class PlierTool : MonoBehaviour
             IfcleanPlier = false;
             hitobjctPlier = null;
         }
-    }
-    public void OnAnimationEvent()
-    {
-        Ifclean = false;
     }
 }

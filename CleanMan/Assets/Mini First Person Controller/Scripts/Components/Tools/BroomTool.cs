@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class BroomTool : MonoBehaviour
 {
     public Camera camera;
+    public Transform PalmL;
+    public Transform PalmR;
+    public GameObject midPoint;
     public GameObject CameraPoint;
     public float Speed;
-    public Animator animator;
+    //public Animator animatorbroom;
+    public GameObject hand;
+    Animator animatorhand;
     public GameObject Player;
     public bool Ifclean = false;
     public bool IfcleanBroom = false;
@@ -20,14 +26,19 @@ public class BroomTool : MonoBehaviour
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
-        transform.parent = Player.transform;
+        //transform.parent = Player.transform;
+        transform.parent = midPoint.transform ;
+        animatorhand = hand.GetComponent<Animator>();
+        animatorhand.Play("Idle");
     }
 
     // Update is called once per frame
     void Update()
     {
+        midPoint.transform .position = (PalmL.position + PalmR.position )/2;
         Speed = Player.GetComponent<Breath>().Cleanspeed;
-        animator.speed = Speed;
+        //animatorbroom.speed = Speed;
+        animatorhand.speed = Speed;
         Move();
         Check();
         CameraCheck();
@@ -43,12 +54,20 @@ public class BroomTool : MonoBehaviour
         }
         if (Ifclean)
         {
+            //animatorbroom.SetBool("Ifbroom", true);
+            animatorhand.SetBool("IfBroom", true);
 
-            animator.enabled = true;
+
         }
         else
         {
-            animator.enabled = false;
+            // animatorbroom.SetBool("Ifbroom", false);
+            animatorhand.SetBool("IfBroom", false);
+        }
+        //
+        if (!hand.GetComponent<Animationstop>().Ifclean)
+        {
+            Ifclean = false;
         }
     }
     
@@ -63,7 +82,8 @@ public class BroomTool : MonoBehaviour
         else
         {
             RaycastHit hit;
-            Ifhit = Physics.Raycast(Point.position, Point.forward, out hit, 1.5f, GoodsBroom);
+            Ifhit = Physics.Raycast(Point.position, Point.forward, out hit, 1f, GoodsBroom);
+            Debug.DrawRay(Point.position, Point.forward, Color.blue);
             if (Ifhit)
             {
                 hitobjctBroom = hit.collider.gameObject;

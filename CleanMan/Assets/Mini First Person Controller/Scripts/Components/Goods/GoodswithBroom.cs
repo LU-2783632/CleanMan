@@ -66,7 +66,6 @@ public class GoodswithBroom : MonoBehaviour
         {
             gameObject.GetComponent<Outline>().enabled = false;
         }
-
     }
 
 }
