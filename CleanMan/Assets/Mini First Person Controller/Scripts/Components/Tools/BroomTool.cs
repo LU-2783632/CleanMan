@@ -82,38 +82,22 @@ public class BroomTool : MonoBehaviour
         else
         {
             RaycastHit hit;
-
-            // 调整射线方向为斜向下
-            Vector3 downForward = Quaternion.Euler(5f, 0, 0) * Vector3.forward;  // 绕 Z 轴旋转 45°，然后指向下方
-            Debug.Log($"downForward direction: {downForward}");
-            Ifhit = Physics.Raycast(Point.position, downForward, out hit, 2.5f, GoodsBroom);
-
-            
-
-            Vector3 downForward = Quaternion.Euler(5f, 0, 0) * Vector3.forward;  // 绕 Z 轴旋转 45°，然后指向下方
-            Debug.Log($"downForward direction: {downForward}");
-            Ifhit = Physics.Raycast(Point.position, downForward, out hit, 2.5f, GoodsBroom);
-          
+            Ifhit = Physics.Raycast(Point.position, Point.forward, out hit, 1f, GoodsBroom);
+            Debug.DrawRay(Point.position, Point.forward, Color.blue);
             if (Ifhit)
             {
-                Debug.Log($"Raycast hit: {hit.collider.gameObject.name}");
                 hitobjctBroom = hit.collider.gameObject;
-                Debug.Log($"Raycast hit: {hitobjctBroom.name}");
-
                 if (Input.GetMouseButton(0))
                 {
                     IfcleanBroom = true;
-                    Debug.Log("Cleaning state activated.");
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
                     IfcleanBroom = false;
-                    Debug.Log("Cleaning state deactivated.");
                 }
             }
             else
             {
-                Debug.Log("Raycast did not hit any object.");
                 IfcleanBroom = false;
                 hitobjctBroom = null;
             }
@@ -140,9 +124,7 @@ public class BroomTool : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Vector3 downForward = Quaternion.Euler(5f, 0, 0) * CameraPoint.transform.forward;
-        Gizmos.DrawRay(CameraPoint.transform.position, downForward * 5f);
-        Gizmos.DrawRay(Point.position, downForward * 5f);
-    }  
+        Gizmos.DrawRay(CameraPoint.transform.position, CameraPoint.transform.forward * 5f);
+    }
 
 }
